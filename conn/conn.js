@@ -1,13 +1,15 @@
 const mongoose = require('mongoose');
 
-const Conn = () => {
-    mongoose.connect('mongodb://localhost:27017/tasks', {
+const Conn = (url, user, pass, data) => {
+    mongoose.connect(`${url}/${data}`, {
+        user: user,
+        pass: pass,
         useNewUrlParser: true,
         useUnifiedTopology: true,
     }
 ).then(()=>{
     console.log('conexão executada com sucesso');
-}).catch(()=>{
+}).catch((err)=>{
     console.error(err);
 })
 }
